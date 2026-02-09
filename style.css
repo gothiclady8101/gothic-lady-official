@@ -434,9 +434,10 @@ footer {
 
 /* X Feed Section - SPYAIR Style */
 .x-feed-container {
-    max-width: 470px;
+    width: 100%;
     /* Fixed width like SPYAIR desktop */
-    margin: 4rem auto;
+    margin: 0;
+    /* Reset margin for flex layout */
     padding: 0;
     background: transparent;
     border: none;
@@ -483,11 +484,33 @@ footer {
     box-shadow: 0 0 15px var(--accent-red);
 }
 
+/* Info Wrapper (News + X Feed) */
+.info-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
 /* News Section */
 .news-section {
-    max-width: 800px;
-    margin: 4rem auto 2rem;
-    padding: 0 1rem;
+    flex: 1;
+    max-width: 470px;
+    /* Match X Feed width */
+    margin: 0;
+    /* Reset margin for flex layout */
+    padding: 0;
+}
+
+.news-section .section-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
 }
 
 .news-list {
@@ -555,9 +578,20 @@ footer {
 }
 
 /* Responsive adjustment */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .info-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .news-section,
     .x-feed-container {
+        max-width: 100%;
         width: 100%;
+    }
+
+    .x-feed-container {
         padding: 0 1rem;
     }
 }

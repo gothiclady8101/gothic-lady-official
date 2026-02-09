@@ -36,18 +36,7 @@
     </header>
 
     <main>
-        <section id="news" class="news-section fade-in">
-            <h2 class="section-title">NEWS</h2>
-            <ul class="news-list">
-                <!-- Auto-generated news items will appear here -->
-                <li class="news-item">
-                    <span class="news-date">2026.02.10</span>
-                    <span class="news-text">Official Website Renewal Open.</span>
-                </li>
-            </ul>
-        </section>
-
-        <section id="profile" style="counter-set: section-counter 1;">
+        <section id="discography">
             <h2 class="section-title">PROFILE</h2>
             <div class="profile-grid">
                 <div class="profile-text">
@@ -267,15 +256,31 @@
             </div>
         </section>
 
-        <section id="x-feed">
-            <div class="x-feed-container">
-                <h2 class="x-feed-title">X（旧Twitter）</h2>
-                <a class="twitter-timeline" data-theme="dark" data-chrome="noheader nofooter noborders transparent"
-                    data-height="500" href="https://twitter.com/Rose_GothicLady?ref_src=twsrc%5Etfw">Tweets by
-                    Rose_GothicLady</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </section>
+        <!-- Latest Info Wrapper (News + X) -->
+        <div class="info-wrapper section-fade-in">
+            <!-- News Section -->
+            <section id="news" class="news-section">
+                <h2 class="section-title">NEWS</h2>
+                <ul class="news-list">
+                    <!-- Auto-generated news items will appear here -->
+                    <li class="news-item">
+                        <span class="news-date">2026.02.10</span>
+                        <span class="news-text">Official Website Renewal Open.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- X Feed Section -->
+            <section id="x-feed" class="x-feed-section">
+                <div class="x-feed-container">
+                    <h2 class="x-feed-title">X（旧Twitter）</h2>
+                    <a class="twitter-timeline" data-theme="dark" data-chrome="noheader nofooter noborders transparent"
+                        data-height="500" href="https://twitter.com/Rose_GothicLady?ref_src=twsrc%5Etfw">Tweets by
+                        Rose_GothicLady</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </section>
+        </div>
 
     </main>
 
