@@ -234,26 +234,35 @@
         const cursor = document.getElementById('custom-cursor');
         const follower = document.getElementById('custom-cursor-follower');
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // Disable on touch devices or small screens
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isMobileScreen = window.innerWidth <= 1024;
 
-            follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
-            follower.style.top = e.clientY - 10 + 'px';
-        });
+        if (isTouchDevice || isMobileScreen) {
+            if (cursor) cursor.style.display = 'none';
+            if (follower) follower.style.display = 'none';
+        } else {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
 
-        document.querySelectorAll('a, button, .song-item, .hero-title, p').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(4)'; // More highlight for small dot
-                follower.style.transform = 'scale(2)';
-                follower.style.borderColor = 'white';
+                follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
+                follower.style.top = e.clientY - 10 + 'px';
             });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                follower.style.transform = 'scale(1)';
-                follower.style.borderColor = 'var(--accent-red)';
+
+            document.querySelectorAll('a, button, .song-item, .hero-title, p').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(4)';
+                    follower.style.transform = 'scale(2)';
+                    follower.style.borderColor = 'white';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    follower.style.transform = 'scale(1)';
+                    follower.style.borderColor = 'var(--accent-red)';
+                });
             });
-        });
+        }
 
         // Falling Petals Logic
         function createPetal() {
