@@ -432,36 +432,43 @@ footer {
     transform: translateY(0);
 }
 
-/* X Feed Section - Refined Widget Look */
+/* X Feed Section - SPYAIR Style */
 .x-feed-container {
-    max-width: 450px;
-    /* More compact */
+    max-width: 470px;
+    /* Fixed width like SPYAIR desktop */
     margin: 4rem auto;
-    padding: 1.5rem;
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid rgba(230, 0, 51, 0.3);
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 .x-feed-title {
     font-family: var(--font-digital);
-    color: var(--accent-red);
-    font-size: 0.9rem;
-    /* Smaller title */
-    letter-spacing: 0.4em;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    /* Aligned left for "official" feel */
-    text-transform: uppercase;
-    border-left: 3px solid var(--accent-red);
-    padding-left: 1rem;
+    color: #ffffff;
+    /* White text */
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 25px;
+    text-align: center;
+    /* Centered */
+    border: none;
+    padding: 0;
 }
 
 /* Ensure the widget inside is contained */
 .twitter-timeline {
     border-radius: 4px;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .x-feed-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
 }
 
 /* Responsive */
