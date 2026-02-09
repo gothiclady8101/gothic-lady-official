@@ -432,6 +432,26 @@ footer {
     transform: translateY(0);
 }
 
+/* X Feed Section */
+.x-feed-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: rgba(20, 20, 20, 0.5);
+    border: 1px solid #222;
+    border-radius: 12px;
+}
+
+.x-feed-title {
+    font-family: var(--font-digital);
+    color: var(--accent-red);
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     * {
