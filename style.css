@@ -463,6 +463,26 @@ footer {
     border-radius: 4px;
 }
 
+/* Fallback styling for when X widget doesn't load */
+.x-feed-container .twitter-timeline {
+    display: block;
+    padding: 1.5rem;
+    color: var(--text-main);
+    font-family: var(--font-digital);
+    background: rgba(230, 0, 51, 0.1);
+    text-decoration: none;
+    border: 1px solid var(--accent-red);
+    text-align: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.x-feed-container .twitter-timeline:hover {
+    background: var(--accent-red);
+    color: #fff;
+    box-shadow: 0 0 15px var(--accent-red);
+}
+
 /* Responsive adjustment */
 @media (max-width: 768px) {
     .x-feed-container {
