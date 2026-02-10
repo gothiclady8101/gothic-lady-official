@@ -195,20 +195,25 @@ if __name__ == "__main__":
     # In a real scenario, we would allow the scraper to run.
     # For this environment, we will simulate finding a "New Song" to verify the logic works.
     
-    # detected_songs = get_suno_songs(SUNO_PROFILE_URL) 
-    # detected_tweets = get_latest_tweets()
-    
-    # Simulation (comment out real fetch for now or use if confident)
-    # real_tweets = get_latest_tweets()
-    # update_index_html([], real_tweets)
-    
-    print("Running in simulation/setup mode.")
-    print("Uncomment actual fetching logic in update_site.py to enable real updates.")
-    
-    # For initial setup, let's inject dummy tweets to style them
-    dummy_tweets = [
-        {"text": "Official website renewal open. I will deliver my localized world view.", "date": "2026.02.10", "link": "#"},
-        {"text": "New song 'Crimson Phantasm' is now available on Suno.", "date": "2026.02.08", "link": "#"},
-        {"text": "Thank you for listening to my songs. The next update is coming soon.", "date": "2026.02.05", "link": "#"}
-    ]
-    update_index_html([], dummy_tweets)
+    # Real execution for GitHub Actions
+    try:
+        real_tweets = get_latest_tweets()
+        # new_songs = get_suno_songs(SUNO_PROFILE_URL) # Keep Suno manual for now if preferred, or uncomment
+        
+        if real_tweets:
+            update_index_html([], real_tweets)
+            print("Updated index.html with real tweets.")
+        else:
+            print("No tweets fetched or Nitter failed. Keeping existing content.")
+            
+    except Exception as e:
+        print(f"Update failed: {e}")
+
+    # Simulation (commented out for production)
+    # print("Running in simulation/setup mode.")
+    # dummy_tweets = [
+    #     {"text": "Official website renewal open. I will deliver my localized world view.", "date": "2026.02.10", "link": "#"},
+    #     {"text": "New song 'Crimson Phantasm' is now available on Suno.", "date": "2026.02.08", "link": "#"},
+    #     {"text": "Thank you for listening to my songs. The next update is coming soon.", "date": "2026.02.05", "link": "#"}
+    # ]
+    # update_index_html([], dummy_tweets)
