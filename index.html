@@ -10,6 +10,15 @@
 </head>
 
 <body>
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="boot-text digital-font">SYSTEM INITIALIZING...</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="loading-status digital-font">Loading resources...</div>
+        </div>
+    </div>
     <div id="custom-cursor"></div>
     <div id="custom-cursor-follower"></div>
     <div class="noise-overlay"></div>
@@ -385,6 +394,21 @@
         document.querySelectorAll('section, .song-item').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
+        });
+
+        // Loading Screen Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            const status = document.querySelector('.loading-status');
+
+            // Artificial delay to ensure the "Boot" effect is seen
+            setTimeout(() => {
+                if (status) status.textContent = "SYSTEM READY.";
+
+                setTimeout(() => {
+                    if (loader) loader.classList.add('loaded');
+                }, 500);
+            }, 1000);
         });
     </script>
 </body>
