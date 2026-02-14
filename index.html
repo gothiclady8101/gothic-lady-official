@@ -345,11 +345,20 @@
         if (follower) follower.style.display = 'none';
     } else {
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            // Logic to hide cursor when over specific elements (like iframe container)
+            const target = e.target;
+            if (target.closest('.featured-song')) {
+                cursor.style.opacity = '0';
+                follower.style.opacity = '0';
+            } else {
+                cursor.style.opacity = '1';
+                follower.style.opacity = '1';
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
 
-            follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
-            follower.style.top = e.clientY - 10 + 'px';
+                follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
+                follower.style.top = e.clientY - 10 + 'px';
+            }
         });
 
         document.querySelectorAll('a, button, .song-item, .hero-title, p').forEach(el => {
@@ -364,20 +373,6 @@
                 follower.style.borderColor = 'var(--accent-red)';
             });
         });
-
-        // Hide custom cursor over iframe to prevent double cursor / confusion
-        const featuredSong = document.querySelector('.featured-song');
-        if (featuredSong) {
-            featuredSong.addEventListener('mouseenter', () => {
-                cursor.style.opacity = '0';
-                follower.style.opacity = '0';
-            });
-            featuredSong.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '1';
-                follower.style.opacity = '1';
-            });
-        }
-    }    }
     }
 
     // Falling Petals Logic
