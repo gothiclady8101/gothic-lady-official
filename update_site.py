@@ -1,7 +1,8 @@
 import requests
-import re
+import json
 import datetime
 import os
+import re
 from bs4 import BeautifulSoup
 
 # Configuration
@@ -9,211 +10,327 @@ SUNO_USERNAME = "gothiclady1002"
 SUNO_PROFILE_URL = f"https://suno.com/@{SUNO_USERNAME}"
 INDEX_FILE = "index.html"
 
-def get_suno_songs(profile_url):
+# Nitter instances to try (in order of preference)
+NITTER_INSTANCES = [
+    "https://nitter.poast.org",
+    "https://nitter.privacydev.net",
+    "https://nitter.lucabased.xyz",
+    "https://xcancel.com"
+]
+
+def get_suno_songs():
     """
-    Scrapes the Suno profile page to find public songs.
+    Scrapes the Suno profile page for the latest songs using __NEXT_DATA__.
     Returns a list of dictionaries with song details.
-    Note: This is a simplified scraper. Suno's dynamic content might require
-    browser automation (Selenium/Playwright) for full robustness, but we'll try
-    basic requests + regex/soup first for efficiency in GitHub Actions.
     """
-    print(f"Fetching profile: {profile_url}")
+    print(f"Fetching Suno profile: {SUNO_PROFILE_URL}")
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-        response = requests.get(profile_url, headers=headers)
+        response = requests.get(SUNO_PROFILE_URL, headers=headers, timeout=15)
         response.raise_for_status()
         
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Suno's structure is complex and React-based. 
-        # We might need to look for JSON constraints or specific generic classes.
-        # For this demo/v1, we will look for specific patterns or meta tags if available,
-        # but robustly, we might need a workaround if it heavily relies on JS execution.
+        # Suno uses Next.js, so data is often Hydrated in a script tag
+        next_data_tag = soup.find('script', id='__NEXT_DATA__')
         
-        # Strategy: Look for Next.js data or specific song links
         songs = []
         
-        # This part is highly dependent on Suno's current DOM structure.
-        # Since we can't easily see the raw HTML structure without a browser tool here,
-        # we will assume a generic "find links" strategy for now, or rely on a known API if we had one.
-        # FALLBACK: logic to simulate "new song found" for demonstration if scraping fails without JS.
+        if next_data_tag:
+            try:
+                data = json.loads(next_data_tag.string)
+                # Navigate JSON path - this is heuristic and might change
+                # Usually in props -> pageProps -> fallbackData or similar
+                # We will look for anything that looks like a list of clips
+                
+                # Recursive search for 'clips' key or similar structure
+                def find_clips(obj):
+                    if isinstance(obj, dict):
+                        if 'clips' in obj and isinstance(obj['clips'], list):
+                            return obj['clips']
+                        for key, value in obj.items():
+                            result = find_clips(value)
+                            if result: return result
+                    elif isinstance(obj, list):
+                        for item in obj:
+                            result = find_clips(item)
+                            if result: return result
+                    return None
+
+                clips = find_clips(data)
+                
+                if clips:
+                    for clip in clips[:5]: # Get top 5
+                        # Extract relevant fields
+                        title = clip.get('title') or "Untitled"
+                        clip_id = clip.get('id')
+                        metadata = clip.get('metadata', {})
+                        
+                        # Image logic
+                        image_url = clip.get('image_large_url') or clip.get('image_url')
+                        if not image_url and clip_id:
+                            image_url = f"https://cdn1.suno.ai/image_{clip_id}.png" # Fallback guess
+                            
+                        # Style/Genre logic
+                        tags = metadata.get('tags') or ""
+                        
+                        # Date
+                        created_at = clip.get('created_at') # ISO format usually
+                        if created_at:
+                            try:
+                                dt = datetime.datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+                                date_str = dt.strftime("%Y.%m.%d")
+                            except:
+                                date_str = datetime.datetime.now().strftime("%Y.%m.%d")
+                        else:
+                            date_str = datetime.datetime.now().strftime("%Y.%m.%d")
+
+                        songs.append({
+                            'id': clip_id,
+                            'title': title,
+                            'link': f"https://suno.com/song/{clip_id}",
+                            'image': image_url,
+                            'style': tags,
+                            'date': date_str,
+                            'is_public': clip.get('is_public', False)
+                        })
+                        print(f"Found Suno song: {title}")
+                else:
+                    print("Could not find 'clips' list in __NEXT_DATA__")
+            except Exception as e:
+                print(f"Error parsing __NEXT_DATA__: {e}")
         
+        # Fallback: CSS Selectors if JSON fails
+        if not songs:
+            print("Trying CSS selector fallback...")
+            # This is fragile but better than nothing
+            song_links = soup.select('a[href^="/song/"]')
+            seen_ids = set()
+            
+            for link in song_links:
+                href = link.get('href')
+                clip_id = href.split('/')[-1]
+                
+                if clip_id in seen_ids: continue
+                seen_ids.add(clip_id)
+                
+                # Try to find container
+                container = link.find_parent('div', class_=lambda x: x and 'relative' in x)
+                if not container: container = link.parent
+                
+                title = link.get_text(strip=True) or "Unknown Song"
+                
+                # Image
+                img = container.find('img')
+                image_url = img.get('src') if img else ""
+                
+                s = {
+                    'id': clip_id,
+                    'title': title,
+                    'link': f"https://suno.com{href}",
+                    'image': image_url,
+                    'style': "Gothic / AI Generated", # Default
+                    'date': datetime.datetime.now().strftime("%Y.%m.%d"), # Unknown
+                    'is_public': True
+                }
+                songs.append(s)
+                if len(songs) >= 5: break
+
         return songs
 
     except Exception as e:
-        print(f"Error fetching Suno songs: {e}")
+        print(f"Failed to fetch Suno profile: {e}")
         return []
 
 def get_latest_tweets():
     """
-    Fetches the latest tweets from a public Nitter RSS feed.
-    Returns a list of dictionaries with tweet content.
+    Fetches latest tweets from Nitter RSS.
     """
-    nitter_instances = [
-        "https://nitter.poast.org",
-        "https://nitter.privacydev.net",
-        "https://nitter.cz"
-    ]
-    
     username = "Rose_GothicLady"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
 
-    for instance in nitter_instances:
+    for instance in NITTER_INSTANCES:
         rss_url = f"{instance}/{username}/rss"
-        print(f"Trying to fetch tweets from: {rss_url}")
+        print(f"Trying Nitter: {rss_url}")
         try:
             response = requests.get(rss_url, headers=headers, timeout=10)
             if response.status_code == 200:
-                soup = BeautifulSoup(response.content, 'xml') # Use xml parser if available or html.parser as fallback
+                soup = BeautifulSoup(response.content, 'xml')
                 if not soup.find('item'):
-                   soup = BeautifulSoup(response.content, 'html.parser')
+                    soup = BeautifulSoup(response.content, 'html.parser')
                 
                 items = soup.find_all('item', limit=3)
                 tweets = []
                 for item in items:
-                    title = item.find('title').text
-                    link = item.find('link').text
-                    pubDate = item.find('pubDate').text
+                    # Title often contains the tweet text in RSS
+                    description = item.find('description').text if item.find('description') else ""
+                    title = item.find('title').text if item.find('title') else ""
                     
-                    # Clean up title (sometimes Nitter puts "R to @..." or includes images)
-                    # We want the text content.
-                    # Nitter RSS 'description' often has the full HTML content.
-                    description = item.find('description').text
-                    # Simple text extraction from description HTML
-                    desc_soup = BeautifulSoup(description, 'html.parser')
-                    text_content = desc_soup.get_text()
+                    # Nitter title is usually the tweet text. Description might contain HTML images etc.
+                    # We prefer the raw text.
+                    text_content = title
                     
-                    # Basic date formatting
+                    link = item.find('link').text if item.find('link') else "#"
+                    pubDate = item.find('pubDate').text if item.find('pubDate') else ""
+                    
                     try:
+                        # RFC 822 date parsing
                         dt = datetime.datetime.strptime(pubDate, "%a, %d %b %Y %H:%M:%S %Z")
                         date_str = dt.strftime("%Y.%m.%d")
                     except:
-                        date_str = pubDate
-
+                        date_str = datetime.datetime.now().strftime("%Y.%m.%d")
+                    
+                    # Clean text
+                    # Remove "R to @..." if it's a reply (optional, keeping it simple for now)
+                    
                     tweets.append({
-                        'text': text_content[:140] + "..." if len(text_content) > 140 else text_content,
+                        'text': text_content[:100] + "..." if len(text_content) > 100 else text_content,
                         'date': date_str,
                         'link': link
                     })
                 
                 if tweets:
-                    print(f"Successfully fetched {len(tweets)} tweets from {instance}")
+                    print(f"Fetched {len(tweets)} tweets from {instance}")
                     return tweets
         except Exception as e:
-            print(f"Failed to fetch from {instance}: {e}")
+            print(f"Failed {instance}: {e}")
             continue
-    
+            
     print("All Nitter instances failed.")
     return []
 
-def update_index_html(new_songs, new_tweets=None):
+def update_index_html(new_songs, new_tweets):
     """
-    Updates index.html with new songs, news items, and tweets.
+    Updates index.html with new content using BeautifulSoup.
     """
+    if not os.path.exists(INDEX_FILE):
+        print(f"{INDEX_FILE} not found!")
+        return
+
     with open(INDEX_FILE, "r", encoding="utf-8") as f:
         content = f.read()
 
     soup = BeautifulSoup(content, 'html.parser')
-    
-    # 1. Add to News
+    modified = False
+
+    # 1. Update News with New Songs
     news_list = soup.find("ul", class_="news-list")
     if news_list and new_songs:
-        today = datetime.datetime.now().strftime("%Y.%m.%d")
+        existing_news_text = news_list.get_text()
+        
+        # Sort songs by date (newest first) just in case
+        # Assuming new_songs comes in some order, but let's process them
+        
         for song in new_songs:
-            # Check if news already exists to avoid duplicates
-            if song['title'] in str(news_list):
+            # Simple check to avoid duplicate news entries
+            if song['title'] in existing_news_text:
                 continue
                 
+            print(f"Adding news for song: {song['title']}")
             new_li = soup.new_tag("li", attrs={"class": "news-item"})
             
             date_span = soup.new_tag("span", attrs={"class": "news-date"})
-            date_span.string = today
+            date_span.string = song['date']
             
             text_span = soup.new_tag("span", attrs={"class": "news-text"})
-            text_span.string = f"New Song Release: {song['title']}"
+            # Link formatting
+            link = soup.new_tag("a", attrs={"href": song['link'], "target": "_blank", "style": "color: inherit; text-decoration: none;"})
+            link.string = f"New Song '{song['title']}' Released."
+            text_span.append(link)
+            
+            # Badge
+            badge = soup.new_tag("span", attrs={"class": "new-badge"})
+            badge.string = "NEW!"
+            text_span.append(badge)
             
             new_li.append(date_span)
             new_li.append(text_span)
             
-            news_list.insert(0, new_li) # Prepend
-            print(f"Added news for: {song['title']}")
+            news_list.insert(0, new_li) # Add to top
+            modified = True
 
-    # 2. Update Tweets (if any)
+    # 2. Update Discography
+    discography_grid = soup.find("div", class_="discography-grid")
+    if discography_grid and new_songs:
+        existing_html = str(discography_grid)
+        
+        for song in new_songs:
+            if song['id'] in existing_html:
+                continue
+            
+            print(f"Adding discography card for: {song['title']}")
+            # Create Card
+            # Structure:
+            # <a class="song-item" href="..." target="_blank">
+            #   <div class="song-jacket"><img src="..."></div>
+            #   <div class="song-info"><div class="title">...</div><div class="meta">...</div></div>
+            # </a>
+            
+            a_tag = soup.new_tag("a", attrs={"class": "song-item", "href": song['link'], "target": "_blank"})
+            
+            jacket_div = soup.new_tag("div", attrs={"class": "song-jacket"})
+            img = soup.new_tag("img", attrs={"src": song['image'], "alt": song['title'], "loading": "lazy"})
+            jacket_div.append(img)
+            
+            info_div = soup.new_tag("div", attrs={"class": "song-info"})
+            title_div = soup.new_tag("div", attrs={"class": "title"})
+            title_div.string = song['title']
+            meta_div = soup.new_tag("div", attrs={"class": "meta"})
+            meta_div.string = song['style'] or "Gothic / AI"
+            
+            info_div.append(title_div)
+            info_div.append(meta_div)
+            
+            a_tag.append(jacket_div)
+            a_tag.append(info_div)
+            
+            discography_grid.insert(0, a_tag) # Add to top
+            modified = True
+
+    # 3. Update X Feed
     if new_tweets:
         x_feed_container = soup.find("div", class_="x-feed-container")
         if x_feed_container:
-            # Clear existing widget/content
-            x_feed_container.clear()
-            
-            # Rebuild structure
-            title = soup.new_tag("h2", attrs={"class": "x-feed-title"})
-            title.string = "X（旧Twitter）"
-            x_feed_container.append(title)
-            
-            tweet_list = soup.new_tag("ul", attrs={"class": "tweet-list"})
-            
-            for tweet in new_tweets:
-                li = soup.new_tag("li", attrs={"class": "tweet-item"})
+            tweet_list = x_feed_container.find("ul", class_="tweet-list")
+            if tweet_list:
+                tweet_list.clear() # Remove old tweets
                 
-                date_div = soup.new_tag("div", attrs={"class": "tweet-date"})
-                date_div.string = tweet['date']
+                for tweet in new_tweets:
+                    li = soup.new_tag("li", attrs={"class": "tweet-item"})
+                    
+                    date_div = soup.new_tag("div", attrs={"class": "tweet-date"})
+                    date_div.string = tweet['date']
+                    
+                    text_div = soup.new_tag("div", attrs={"class": "tweet-text"})
+                    text_div.string = tweet['text']
+                    
+                    link = soup.new_tag("a", attrs={"href": tweet['link'], "target": "_blank", "class": "tweet-link"})
+                    link.string = "View Post"
+                    
+                    li.append(date_div)
+                    li.append(text_div)
+                    li.append(link)
+                    
+                    tweet_list.append(li)
                 
-                text_div = soup.new_tag("div", attrs={"class": "tweet-text"})
-                text_div.string = tweet['text']
-                
-                link = soup.new_tag("a", attrs={"href": tweet['link'], "target": "_blank", "class": "tweet-link"})
-                link.string = "View Post"
-                
-                li.append(date_div)
-                li.append(text_div)
-                li.append(link)
-                tweet_list.append(li)
-            
-            x_feed_container.append(tweet_list)
-            
-            # View More button
-            footer = soup.new_tag("div", attrs={"class": "x-footer"})
-            view_more = soup.new_tag("a", attrs={"href": "https://twitter.com/Rose_GothicLady", "target": "_blank", "class": "x-view-more"})
-            view_more.string = "View Official X"
-            footer.append(view_more)
-            x_feed_container.append(footer)
-            
-            print("Updated X Feed with static tweets.")
+                print("Updated X Feed.")
+                modified = True
 
-    # 3. Add to Discography
-    # (Implementation details for parsing the grid and adding cards...)
-    # For now, we'll focus on the News section as the primary verification.
-    
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        f.write(str(soup))
+    if modified:
+        with open(INDEX_FILE, "w", encoding="utf-8") as f:
+            f.write(str(soup))
+        print("Successfully updated index.html")
+    else:
+        print("No changes needed for index.html")
 
 if __name__ == "__main__":
-    # In a real scenario, we would allow the scraper to run.
-    # For this environment, we will simulate finding a "New Song" to verify the logic works.
+    # Main execution
+    suno_songs = get_suno_songs()
+    tweets = get_latest_tweets()
     
-    # Real execution for GitHub Actions
-    try:
-        real_tweets = get_latest_tweets()
-        # new_songs = get_suno_songs(SUNO_PROFILE_URL) # Keep Suno manual for now if preferred, or uncomment
-        
-        if real_tweets:
-            update_index_html([], real_tweets)
-            print("Updated index.html with real tweets.")
-        else:
-            print("No tweets fetched or Nitter failed. Keeping existing content.")
-            
-    except Exception as e:
-        print(f"Update failed: {e}")
-
-    # Simulation (commented out for production)
-    # print("Running in simulation/setup mode.")
-    # dummy_tweets = [
-    #     {"text": "Official website renewal open. I will deliver my localized world view.", "date": "2026.02.10", "link": "#"},
-    #     {"text": "New song 'Crimson Phantasm' is now available on Suno.", "date": "2026.02.08", "link": "#"},
-    #     {"text": "Thank you for listening to my songs. The next update is coming soon.", "date": "2026.02.05", "link": "#"}
-    # ]
-    # update_index_html([], dummy_tweets)
+    update_index_html(suno_songs, tweets)
