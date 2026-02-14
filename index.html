@@ -445,6 +445,11 @@
 
             setTimeout(() => {
                 if (loader) loader.classList.add('loaded');
+
+                // Trigger Hero Animation strictly AFTER loading screen fades
+                const heroImage = document.querySelector('.hero-image');
+                if (heroImage) heroImage.classList.add('animate');
+
             }, 300); // 500 -> 300
         }, 600); // 1000 -> 600
     });

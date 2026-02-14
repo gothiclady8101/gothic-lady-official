@@ -208,9 +208,11 @@ nav {
     opacity: 0;
     /* Start hidden for animation */
     filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+    /* Animation applied via JS class */
+}
+
+.hero-image.animate {
     animation: vision-reveal 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-    animation-delay: 2.2s;
-    /* mask-image removed to keep full image clarity */
 }
 
 .hero-content {
