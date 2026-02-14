@@ -325,6 +325,8 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 20px rgba(230, 0, 51, 0.1);
+    /* Restore cursor for interaction */
+    cursor: auto !important;
 }
 
 .discography-grid {
@@ -675,6 +677,12 @@ footer {
     .x-feed-container {
         padding: 0 1rem;
     }
+
+    /* Prevent cursor issues on interactive elements */
+    .featured-song,
+    .featured-song iframe {
+        cursor: auto !important;
+    }
 }
 
 /* Responsive */
@@ -701,6 +709,12 @@ footer {
 
     .hero-title {
         font-size: 3.5rem;
+    }
+
+    /* Mobile Iframe Adjustment */
+    .featured-song iframe {
+        height: 380px;
+        /* Reducing height for mobile */
     }
 }
 
