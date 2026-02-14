@@ -343,6 +343,8 @@
     if (isTouchDevice || isMobileScreen) {
         if (cursor) cursor.style.display = 'none';
         if (follower) follower.style.display = 'none';
+        // Add a class for mobile specific adjustments if needed
+        document.body.classList.add('is-mobile');
     } else {
         document.addEventListener('mousemove', (e) => {
             // Logic to hide cursor when over specific elements (like iframe container)
@@ -411,8 +413,9 @@
         `;
     document.head.appendChild(style);
 
-    // Build some petals
-    for (let i = 0; i < 30; i++) {
+    // Build some petals - Fewer on mobile for performance
+    const petalCount = isMobileScreen ? 12 : 30;
+    for (let i = 0; i < petalCount; i++) {
         createPetal();
     }
 

@@ -331,7 +331,22 @@ section {
 }
 
 .featured-song iframe {
-    max-width: 100%;
+    width: 100%;
+    /* Adaptive height based on aspect ratio or fixed mobile height */
+    height: 480px;
+}
+
+@media (max-width: 768px) {
+    .featured-song iframe {
+        height: 380px;
+        /* Slightly smaller for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-song iframe {
+        height: 300px;
+    }
 }
 
 .discography-grid {
@@ -713,13 +728,23 @@ footer {
 
 @media (max-width: 768px) {
     nav {
-        padding: 1rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
+        padding: 1rem;
+        flex-direction: row;
+        /* Keep horizontal but wrap if needed */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     .nav-link {
         margin: 0 0.5rem;
+        font-size: 0.8rem;
     }
 
     .hero-title {
