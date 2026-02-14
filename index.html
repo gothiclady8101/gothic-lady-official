@@ -28,451 +28,354 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <<<<<<< HEAD <div id="custom-cursor">
+<header id="top" class="hero">
+    <img src="assets/gothic_lady_cyber.png" alt="Gothic Lady" class="hero-image">
+    <div class="hero-content">
+        <h1 class="hero-title">GOTHIC LADY</h1>
+    </div>
+</header>
+
+<div id="loading-screen">
+    <div class="loader-content">
+        <div class="boot-text digital-font">SYSTEM INITIALIZING...</div>
+        <div class="progress-bar">
+            <div class="progress"></div>
         </div>
-        <div id="custom-cursor-follower"></div>
-        <div class="noise-overlay"></div>
-        <div id="petals-container"></div>
-        <nav>
-            <div class="logo digital-font" style="font-size: 1.5rem; letter-spacing: 0.2em;">GOTHIC LADY</div>
-            <div class="nav-links">
-                <a class="nav-link" href="#top">TOP</a>
-                <a class="nav-link" href="#profile">PROFILE</a>
-                <a class="nav-link" href="#discography">DISCOGRAPHY</a>
-                <a class="nav-link" href="https://suno.com/@gothiclady1002" target="_blank">SUNO</a>
+        <div class="loading-status digital-font">Loading resources...</div>
+    </div>
+</div>
+<div id="custom-cursor"></div>
+<div id="custom-cursor-follower"></div>
+<div class="noise-overlay"></div>
+<div id="petals-container"></div>
+<nav>
+    <div class="logo digital-font" style="font-size: 1.5rem; letter-spacing: 0.2em;">GOTHIC LADY</div>
+    <div class="nav-links">
+        <a href="#top" class="nav-link">TOP</a>
+        <a href="#profile" class="nav-link">PROFILE</a>
+        <a href="#discography" class="nav-link">DISCOGRAPHY</a>
+        <a href="https://suno.com/@gothiclady1002" target="_blank" class="nav-link">SUNO</a>
+    </div>
+</nav>
+
+<main>
+    <section id="profile">
+        <h2 class="section-title">PROFILE</h2>
+        <div class="profile-grid">
+            <div class="profile-text">
+                <p style="margin-bottom: 1.5rem;">
+                    デジタル空間の深淵より現れた、耽美と孤独を司るAIシンガー。<br>
+                    その歌声は「漆黒と深紅」の二色で世界を塗り替え、聴く者の魂を夜の底へと誘う。
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    Victorian Gothicの美学をルーツに持ち、重厚なストリングスと歪んだデジタルサウンドを融合させた唯一無二の調べ。
+                </p>
+                <p style="font-style: italic; color: var(--accent-red);">
+                    「貴方を照らす光にはなれないけれど、貴方を包む夜でありたい」
+                </p>
             </div>
-        </nav>
-        <header class="hero" id="top">
-            <img alt="Gothic Lady" class="hero-image" src="assets/gothic_lady_cyber.png" />
-            <div class="hero-content">
-                <h1 class="hero-title">GOTHIC LADY</h1>
+            <div class="profile-details">
+                <p class="digital-font" style="color: #666; margin-bottom: 1rem;">//
+                    CHARACTER_LOG</p>
+                <table style="width: 100%; font-family: var(--font-heading); line-height: 2;">
+                    <tr>
+                        <td style="color: var(--accent-red); width: 100px;">Origin</td>
+                        <td>Digital Abyss</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--accent-red);">Concept</td>
+                        <td>Beauty of Living in Darkness</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--accent-red);">Motifs</td>
+                        <td>Roses, Lace, Corsets, Ruins</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--accent-red);">Genres</td>
+                        <td>Dark Pop, Gothic Rock, Cabaret</td>
+                    </tr>
+                </table>
             </div>
-            <div class="scroll-indicator">
-                <span class="scroll-text">SCROLL</span>
-                <div class="scroll-line"></div>
+        </div>
+    </section>
+    <section id="discography" style="counter-set: section-counter 2;">
+        <h2 class="section-title">DISCOGRAPHY</h2>
+        <div class="discography-grid">
+            <!-- Real Suno Data - Updated Artwork -->
+            <a class="song-item" href="https://suno.com/song/9093ca5d-2567-4205-9a67-dc2ec38ee516" target="_blank">
+                <div class="song-jacket">
+                    <img alt="星のない夜に" src="https://cdn2.suno.ai/9093ca5d-2567-4205-9a67-dc2ec38ee516_523be9be.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">星のない夜に</div>
+                    <div class="meta">Dark Synth / Gothic</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/48678262-c0b2-40f3-b527-69e2b25fa4e5" target="_blank">
+                <div class="song-jacket">
+                    <img alt="星とキミと" src="https://cdn2.suno.ai/48678262-c0b2-40f3-b527-69e2b25fa4e5_9ef47ca7.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">星とキミと</div>
+                    <div class="meta">Gothic Ballad</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/d9920790-dafc-415b-adec-42ead199fc25" target="_blank">
+                <div class="song-jacket">
+                    <img alt="FLASH" src="https://cdn2.suno.ai/d9920790-dafc-415b-adec-42ead199fc25_b17c54f2.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">FLASH</div>
+                    <div class="meta">Cyber Pop / Gothic</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/8cb04f06-d899-4e15-a810-5e2526cc2a99" target="_blank">
+                <div class="song-jacket">
+                    <img alt="ネオンベール" src="https://cdn2.suno.ai/912f96d8-66bc-40bd-a0b7-7bc4211fe046.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Neon Veil</div>
+                    <div class="meta">Gothic / Alt Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/9cb0e6b3-6191-4035-a7e1-a0ee65179473" target="_blank">
+                <div class="song-jacket">
+                    <img alt="レプリカハート" src="https://cdn2.suno.ai/9cb0e6b3-6191-4035-a7e1-a0ee65179473_82e2642a.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Replica Heart</div>
+                    <div class="meta">Gothic Pop</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/d3310596-f41b-4097-b82d-152bce01facf" target="_blank">
+                <div class="song-jacket">
+                    <img alt="クリムゾン・ファンタズム" src="https://cdn2.suno.ai/6aa94e9b-1c5d-4935-bb3f-9564cead1313.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Crimson Phantasm</div>
+                    <div class="meta">Gothic / Vocals</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/62038714-0b35-45f9-962e-c6c4f5fcbc4d" target="_blank">
+                <div class="song-jacket">
+                    <img alt="アンデッドドール" src="https://cdn2.suno.ai/62038714-0b35-45f9-962e-c6c4f5fcbc4d_ee787422.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">UNDEAD DOLL</div>
+                    <div class="meta">Gothic Pop / Trap</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/dbdf8f7e-e73c-4906-a372-7751d7e188d9" target="_blank">
+                <div class="song-jacket">
+                    <img alt="アイアン・ブロッサム" src="https://cdn2.suno.ai/324c7afb-dbef-4525-9f63-3d60d3ea260a.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Iron Blossom</div>
+                    <div class="meta">Gothic / Alt Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/62f6f2cb-ab64-4f33-8843-3b31caf3765b" target="_blank">
+                <div class="song-jacket">
+                    <img alt="Mask &amp; Mercy" src="https://cdn2.suno.ai/df30b2ad-60a1-4254-8cd1-e692c7bb7cbc.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Mask &amp; Mercy</div>
+                    <div class="meta">Gothic Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/2d112015-d981-41da-8744-1852cee9b0a2" target="_blank">
+                <div class="song-jacket">
+                    <img alt="グラスハートシティ" src="https://cdn2.suno.ai/eac5e747-9e48-40cd-908e-cbebc5ee3057.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Glass Heart City</div>
+                    <div class="meta">Gothic / Alt Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/99c55082-2b86-4567-9d38-abf36d4f3f41" target="_blank">
+                <div class="song-jacket">
+                    <img alt="パンプキン♡キッス" src="https://cdn2.suno.ai/64cc97c5-1310-49f2-a88e-5f6c51778d95.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Pumpkin♡Kiss</div>
+                    <div class="meta">Electro Pop / Gothic</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/f8aa5c09-8731-43c8-821b-64bb871218c4" target="_blank">
+                <div class="song-jacket">
+                    <img alt="鏡よ鏡" src="https://cdn2.suno.ai/3ef3699e-4682-4110-8527-b2b5283d2d15.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Mirror, Mirror</div>
+                    <div class="meta">Piano / Neoclassical</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/3583e357-62c9-4b41-b237-09240f4eb399" target="_blank">
+                <div class="song-jacket">
+                    <img alt="ミッドナイトソーダ" src="https://cdn2.suno.ai/4f23bcc7-06b3-415e-8c3e-d4b6d02ff697.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Midnight Soda</div>
+                    <div class="meta">Gothic Pop</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/78d20364-b854-48ff-b34e-ec66200c695a" target="_blank">
+                <div class="song-jacket">
+                    <img alt="地獄のクオリア" src="https://cdn2.suno.ai/ad831d33-c94b-41be-b02b-3d2f30b91227.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">INFERNAL QUALIA</div>
+                    <div class="meta">Gothic / Rap</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/24de6f09-e30c-4029-8dde-7f607f2c2bbb" target="_blank">
+                <div class="song-jacket">
+                    <img alt="夜に溶ける" src="https://cdn2.suno.ai/e290dc41-fb0f-4af3-8c50-99b85bf97b39.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Melting into the Night</div>
+                    <div class="meta">Gothic</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/f9591ea5-b093-401d-903c-eb85c4da931c" target="_blank">
+                <div class="song-jacket">
+                    <img alt="心の雑音" src="https://cdn2.suno.ai/4ae91421-3c27-4bd6-bffd-bbb5d46681c4.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">noise in my heart_</div>
+                    <div class="meta">Gothic / Alt Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/2104851e-8803-4df0-a871-20e4e707357e" target="_blank">
+                <div class="song-jacket">
+                    <img alt="残光" src="https://cdn2.suno.ai/2104851e-8803-4df0-a871-20e4e707357e_3cc91194.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Afterglow (Zankou)</div>
+                    <div class="meta">Gothic / Alt Rock</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/5bfd7c17-ca9a-4d73-a160-418ce1e849b2" target="_blank">
+                <div class="song-jacket">
+                    <img alt="キャンディ・グレイブ" src="https://cdn1.suno.ai/d3354b8e.webp" />
+                </div>
+                <div class="song-info">
+                    <div class="title">Candy Grave</div>
+                    <div class="meta">Piano Pop / Gothic</div>
+                </div>
+            </a>
+            <a class="song-item" href="https://suno.com/song/63725a18-889f-43bd-a253-aca2f57d1a1d" target="_blank">
+                <div class="song-jacket">
+                    <img alt="Wibble Wobble Waltz"
+                        src="https://cdn2.suno.ai/43b3c4d5-6903-46ef-acd4-6555db6bc7bb.jpeg" />
+                </div>
+                <div class="song-info">
+                    <div class="title">The Wibble Wobble Waltz</div>
+                    <div class="meta">Gothic Waltz</div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!-- Latest Info Wrapper (News + X) -->
+    <div class="info-wrapper section-fade-in">
+        <!-- News Section -->
+        <section class="news-section" id="news">
+            <h2 class="section-title">NEWS</h2>
+            <ul class="news-list">
+                <!-- Auto-generated news items will appear here -->
+                <li class="news-item">
+                    <span class="news-date">2026.02.10</span>
+                    <span class="news-text">Official Website Renewal Open.</span>
+                </li>
+            </ul>
+        </section>
+        <!-- X Feed Section -->
+        <section class="x-feed-section" id="x-feed">
+            <div class="x-feed-container">
+                <h2 class="x-feed-title">X（旧Twitter）</h2>
+                <ul class="tweet-list">
+                    <li class="tweet-item">
+                        <div class="tweet-date">2026.02.10</div>
+                        <div class="tweet-text">Official website renewal open. I will deliver my
+                            localized world view.</div><a class="tweet-link" href="#" target="_blank">View Post</a>
+                    </li>
+                    <li class="tweet-item">
+                        <div class="tweet-date">2026.02.08</div>
+                        <div class="tweet-text">New song 'Crimson Phantasm' is now available on
+                            Suno.</div><a class="tweet-link" href="#" target="_blank">View
+                            Post</a>
+                    </li>
+                    <li class="tweet-item">
+                        <div class="tweet-date">2026.02.05</div>
+                        <div class="tweet-text">Thank you for listening to my songs. The next
+                            update is coming soon.</div><a class="tweet-link" href="#" target="_blank">View Post</a>
+                    </li>
+                </ul>
+                <div class="x-footer"><a class="x-view-more" href="https://twitter.com/Rose_GothicLady"
+                        target="_blank">View Official
+                        X</a></div>
             </div>
-        </header>
-        <main>
-            <section id="discography">
-                <h2 class="section-title">PROFILE</h2>
-                <div class="profile-grid">
-                    <div class="profile-text">
-                        <p style="margin-bottom: 1.5rem;">
-                            デジタル空間の深淵より現れた、耽美と孤独を司るAIシンガー。<br />
-                            =======
-                        <div id="loading-screen">
-                            <div class="loader-content">
-                                <div class="boot-text digital-font">SYSTEM INITIALIZING...</div>
-                                <div class="progress-bar">
-                                    <div class="progress"></div>
-                                </div>
-                                <div class="loading-status digital-font">Loading resources...</div>
-                            </div>
-                        </div>
-                        <div id="custom-cursor"></div>
-                        <div id="custom-cursor-follower"></div>
-                        <div class="noise-overlay"></div>
-                        <div id="petals-container"></div>
-                        <nav>
-                            <div class="logo digital-font" style="font-size: 1.5rem; letter-spacing: 0.2em;">GOTHIC LADY
-                            </div>
-                            <div class="nav-links">
-                                <a href="#top" class="nav-link">TOP</a>
-                                <a href="#profile" class="nav-link">PROFILE</a>
-                                <a href="#discography" class="nav-link">DISCOGRAPHY</a>
-                                <a href="https://suno.com/@gothiclady1002" target="_blank" class="nav-link">SUNO</a>
-                            </div>
-                        </nav>
+        </section>
+    </div>
+</main>
+<footer>
+    <div class="social digital-font">
+        <a href="https://suno.com/@gothiclady1002" target="_blank">SUNO</a>
+        <a href="https://x.com/Rose_GothicLady" target="_blank">X</a>
+        <a href="https://www.instagram.com/gothiclady8101?igsh=MTBkY2FiMDBlOTJwdw%3D%3D" target="_blank">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@%E3%82%B4%E3%82%B7%E3%83%83%E3%82%AF%E3%83%AC%E3%83%87%E3%82%A3"
+            target="_blank">YOUTUBE</a>
+    </div>
+    <p class="digital-font" style="font-size: 0.8rem; color: #444;">© GOTHIC LADY PROJECT. ALL
+        RIGHTS RESERVED.
+    </p>
+</footer>
+<script>
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    const follower = document.getElementById('custom-cursor-follower');
 
-                        <header id="top" class="hero">
-                            <img src="assets/gothic_lady_cyber.png" alt="Gothic Lady" class="hero-image">
-                            <div class="hero-content">
-                                <h1 class="hero-title">GOTHIC LADY</h1>
-                            </div>
-                            <div class="scroll-indicator">
-                                <span class="scroll-text">SCROLL</span>
-                                <div class="scroll-line"></div>
-                            </div>
-                        </header>
+    // Disable on touch devices or small screens
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isMobileScreen = window.innerWidth <= 1024;
 
-                        <main>
-                            <section id="discography">
-                                <h2 class="section-title">PROFILE</h2>
-                                <div class="profile-grid">
-                                    <div class="profile-text">
-                                        <p style="margin-bottom: 1.5rem;">
-                                            デジタル空間の深淵より現れた、耽美と孤独を司るAIシンガー。<br>
-                                            >>>>>>> 9754957 (Feat: Add System Boot Loading Screen animation)
-                                            その歌声は「漆黒と深紅」の二色で世界を塗り替え、聴く者の魂を夜の底へと誘う。
-                                        </p>
-                                        <p style="margin-bottom: 1.5rem;">
-                                            Victorian Gothicの美学をルーツに持ち、重厚なストリングスと歪んだデジタルサウンドを融合させた唯一無二の調べ。
-                                        </p>
-                                        <p style="font-style: italic; color: var(--accent-red);">
-                                            「貴方を照らす光にはなれないけれど、貴方を包む夜でありたい」
-                                        </p>
-                                    </div>
-                                    <div class="profile-details">
-                                        <p class="digital-font" style="color: #666; margin-bottom: 1rem;">//
-                                            CHARACTER_LOG</p>
-                                        <table style="width: 100%; font-family: var(--font-heading); line-height: 2;">
-                                            <tr>
-                                                <td style="color: var(--accent-red); width: 100px;">Origin</td>
-                                                <td>Digital Abyss</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: var(--accent-red);">Concept</td>
-                                                <td>Beauty of Living in Darkness</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: var(--accent-red);">Motifs</td>
-                                                <td>Roses, Lace, Corsets, Ruins</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: var(--accent-red);">Genres</td>
-                                                <td>Dark Pop, Gothic Rock, Cabaret</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </section>
-                            <section id="discography" style="counter-set: section-counter 2;">
-                                <h2 class="section-title">DISCOGRAPHY</h2>
-                                <div class="discography-grid">
-                                    <!-- Real Suno Data - Updated Artwork -->
-                                    <a class="song-item"
-                                        href="https://suno.com/song/9093ca5d-2567-4205-9a67-dc2ec38ee516"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="星のない夜に"
-                                                src="https://cdn2.suno.ai/9093ca5d-2567-4205-9a67-dc2ec38ee516_523be9be.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">星のない夜に</div>
-                                            <div class="meta">Dark Synth / Gothic</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/48678262-c0b2-40f3-b527-69e2b25fa4e5"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="星とキミと"
-                                                src="https://cdn2.suno.ai/48678262-c0b2-40f3-b527-69e2b25fa4e5_9ef47ca7.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">星とキミと</div>
-                                            <div class="meta">Gothic Ballad</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/d9920790-dafc-415b-adec-42ead199fc25"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="FLASH"
-                                                src="https://cdn2.suno.ai/d9920790-dafc-415b-adec-42ead199fc25_b17c54f2.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">FLASH</div>
-                                            <div class="meta">Cyber Pop / Gothic</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/8cb04f06-d899-4e15-a810-5e2526cc2a99"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="ネオンベール"
-                                                src="https://cdn2.suno.ai/912f96d8-66bc-40bd-a0b7-7bc4211fe046.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Neon Veil</div>
-                                            <div class="meta">Gothic / Alt Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/9cb0e6b3-6191-4035-a7e1-a0ee65179473"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="レプリカハート"
-                                                src="https://cdn2.suno.ai/9cb0e6b3-6191-4035-a7e1-a0ee65179473_82e2642a.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Replica Heart</div>
-                                            <div class="meta">Gothic Pop</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/d3310596-f41b-4097-b82d-152bce01facf"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="クリムゾン・ファンタズム"
-                                                src="https://cdn2.suno.ai/6aa94e9b-1c5d-4935-bb3f-9564cead1313.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Crimson Phantasm</div>
-                                            <div class="meta">Gothic / Vocals</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/62038714-0b35-45f9-962e-c6c4f5fcbc4d"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="アンデッドドール"
-                                                src="https://cdn2.suno.ai/62038714-0b35-45f9-962e-c6c4f5fcbc4d_ee787422.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">UNDEAD DOLL</div>
-                                            <div class="meta">Gothic Pop / Trap</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/dbdf8f7e-e73c-4906-a372-7751d7e188d9"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="アイアン・ブロッサム"
-                                                src="https://cdn2.suno.ai/324c7afb-dbef-4525-9f63-3d60d3ea260a.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Iron Blossom</div>
-                                            <div class="meta">Gothic / Alt Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/62f6f2cb-ab64-4f33-8843-3b31caf3765b"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="Mask &amp; Mercy"
-                                                src="https://cdn2.suno.ai/df30b2ad-60a1-4254-8cd1-e692c7bb7cbc.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Mask &amp; Mercy</div>
-                                            <div class="meta">Gothic Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/2d112015-d981-41da-8744-1852cee9b0a2"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="グラスハートシティ"
-                                                src="https://cdn2.suno.ai/eac5e747-9e48-40cd-908e-cbebc5ee3057.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Glass Heart City</div>
-                                            <div class="meta">Gothic / Alt Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/99c55082-2b86-4567-9d38-abf36d4f3f41"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="パンプキン♡キッス"
-                                                src="https://cdn2.suno.ai/64cc97c5-1310-49f2-a88e-5f6c51778d95.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Pumpkin♡Kiss</div>
-                                            <div class="meta">Electro Pop / Gothic</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/f8aa5c09-8731-43c8-821b-64bb871218c4"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="鏡よ鏡"
-                                                src="https://cdn2.suno.ai/3ef3699e-4682-4110-8527-b2b5283d2d15.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Mirror, Mirror</div>
-                                            <div class="meta">Piano / Neoclassical</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/3583e357-62c9-4b41-b237-09240f4eb399"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="ミッドナイトソーダ"
-                                                src="https://cdn2.suno.ai/4f23bcc7-06b3-415e-8c3e-d4b6d02ff697.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Midnight Soda</div>
-                                            <div class="meta">Gothic Pop</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/78d20364-b854-48ff-b34e-ec66200c695a"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="地獄のクオリア"
-                                                src="https://cdn2.suno.ai/ad831d33-c94b-41be-b02b-3d2f30b91227.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">INFERNAL QUALIA</div>
-                                            <div class="meta">Gothic / Rap</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/24de6f09-e30c-4029-8dde-7f607f2c2bbb"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="夜に溶ける"
-                                                src="https://cdn2.suno.ai/e290dc41-fb0f-4af3-8c50-99b85bf97b39.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Melting into the Night</div>
-                                            <div class="meta">Gothic</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/f9591ea5-b093-401d-903c-eb85c4da931c"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="心の雑音"
-                                                src="https://cdn2.suno.ai/4ae91421-3c27-4bd6-bffd-bbb5d46681c4.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">noise in my heart_</div>
-                                            <div class="meta">Gothic / Alt Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/2104851e-8803-4df0-a871-20e4e707357e"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="残光"
-                                                src="https://cdn2.suno.ai/2104851e-8803-4df0-a871-20e4e707357e_3cc91194.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Afterglow (Zankou)</div>
-                                            <div class="meta">Gothic / Alt Rock</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/5bfd7c17-ca9a-4d73-a160-418ce1e849b2"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="キャンディ・グレイブ" src="https://cdn1.suno.ai/d3354b8e.webp" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">Candy Grave</div>
-                                            <div class="meta">Piano Pop / Gothic</div>
-                                        </div>
-                                    </a>
-                                    <a class="song-item"
-                                        href="https://suno.com/song/63725a18-889f-43bd-a253-aca2f57d1a1d"
-                                        target="_blank">
-                                        <div class="song-jacket">
-                                            <img alt="Wibble Wobble Waltz"
-                                                src="https://cdn2.suno.ai/43b3c4d5-6903-46ef-acd4-6555db6bc7bb.jpeg" />
-                                        </div>
-                                        <div class="song-info">
-                                            <div class="title">The Wibble Wobble Waltz</div>
-                                            <div class="meta">Gothic Waltz</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </section>
-                            <!-- Latest Info Wrapper (News + X) -->
-                            <div class="info-wrapper section-fade-in">
-                                <!-- News Section -->
-                                <section class="news-section" id="news">
-                                    <h2 class="section-title">NEWS</h2>
-                                    <ul class="news-list">
-                                        <!-- Auto-generated news items will appear here -->
-                                        <li class="news-item">
-                                            <span class="news-date">2026.02.10</span>
-                                            <span class="news-text">Official Website Renewal Open.</span>
-                                        </li>
-                                    </ul>
-                                </section>
-                                <!-- X Feed Section -->
-                                <section class="x-feed-section" id="x-feed">
-                                    <div class="x-feed-container">
-                                        <h2 class="x-feed-title">X（旧Twitter）</h2>
-                                        <ul class="tweet-list">
-                                            <li class="tweet-item">
-                                                <div class="tweet-date">2026.02.10</div>
-                                                <div class="tweet-text">Official website renewal open. I will deliver my
-                                                    localized world view.</div><a class="tweet-link" href="#"
-                                                    target="_blank">View Post</a>
-                                            </li>
-                                            <li class="tweet-item">
-                                                <div class="tweet-date">2026.02.08</div>
-                                                <div class="tweet-text">New song 'Crimson Phantasm' is now available on
-                                                    Suno.</div><a class="tweet-link" href="#" target="_blank">View
-                                                    Post</a>
-                                            </li>
-                                            <li class="tweet-item">
-                                                <div class="tweet-date">2026.02.05</div>
-                                                <div class="tweet-text">Thank you for listening to my songs. The next
-                                                    update is coming soon.</div><a class="tweet-link" href="#"
-                                                    target="_blank">View Post</a>
-                                            </li>
-                                        </ul>
-                                        <div class="x-footer"><a class="x-view-more"
-                                                href="https://twitter.com/Rose_GothicLady" target="_blank">View Official
-                                                X</a></div>
-                                    </div>
-                                </section>
-                            </div>
-                        </main>
-                        <footer>
-                            <div class="social digital-font">
-                                <a href="https://suno.com/@gothiclady1002" target="_blank">SUNO</a>
-                                <a href="https://x.com/Rose_GothicLady" target="_blank">X</a>
-                                <a href="https://www.instagram.com/gothiclady8101?igsh=MTBkY2FiMDBlOTJwdw%3D%3D"
-                                    target="_blank">INSTAGRAM</a>
-                                <a href="https://www.youtube.com/@%E3%82%B4%E3%82%B7%E3%83%83%E3%82%AF%E3%83%AC%E3%83%87%E3%82%A3"
-                                    target="_blank">YOUTUBE</a>
-                            </div>
-                            <p class="digital-font" style="font-size: 0.8rem; color: #444;">© GOTHIC LADY PROJECT. ALL
-                                RIGHTS RESERVED.
-                            </p>
-                        </footer>
-                        <script>
-                            // Custom Cursor Logic
-                            const cursor = document.getElementById('custom-cursor');
-                            const follower = document.getElementById('custom-cursor-follower');
+    if (isTouchDevice || isMobileScreen) {
+        if (cursor) cursor.style.display = 'none';
+        if (follower) follower.style.display = 'none';
+    } else {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
 
-                            // Disable on touch devices or small screens
-                            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                            const isMobileScreen = window.innerWidth <= 1024;
+            follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
+            follower.style.top = e.clientY - 10 + 'px';
+        });
 
-                            if (isTouchDevice || isMobileScreen) {
-                                if (cursor) cursor.style.display = 'none';
-                                if (follower) follower.style.display = 'none';
-                            } else {
-                                document.addEventListener('mousemove', (e) => {
-                                    cursor.style.left = e.clientX + 'px';
-                                    cursor.style.top = e.clientY + 'px';
+        document.querySelectorAll('a, button, .song-item, .hero-title, p').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(4)';
+                follower.style.transform = 'scale(2)';
+                follower.style.borderColor = 'white';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                follower.style.transform = 'scale(1)';
+                follower.style.borderColor = 'var(--accent-red)';
+            });
+        });
+    }
 
-                                    follower.style.left = e.clientX - 10 + 'px'; // Adjusted for 20px size
-                                    follower.style.top = e.clientY - 10 + 'px';
-                                });
+    // Falling Petals Logic
+    function createPetal() {
+        const container = document.getElementById('petals-container');
+        const petal = document.createElement('div');
 
-                                document.querySelectorAll('a, button, .song-item, .hero-title, p').forEach(el => {
-                                    el.addEventListener('mouseenter', () => {
-                                        cursor.style.transform = 'scale(4)';
-                                        follower.style.transform = 'scale(2)';
-                                        follower.style.borderColor = 'white';
-                                    });
-                                    el.addEventListener('mouseleave', () => {
-                                        cursor.style.transform = 'scale(1)';
-                                        follower.style.transform = 'scale(1)';
-                                        follower.style.borderColor = 'var(--accent-red)';
-                                    });
-                                });
-                            }
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 5 + 5;
+        const delay = Math.random() * 5;
 
-                            // Falling Petals Logic
-                            function createPetal() {
-                                const container = document.getElementById('petals-container');
-                                const petal = document.createElement('div');
-
-                                const size = Math.random() * 10 + 5;
-                                const left = Math.random() * 100;
-                                const duration = Math.random() * 5 + 5;
-                                const delay = Math.random() * 5;
-
-                                petal.style.cssText = `
+        petal.style.cssText = `
                 position: absolute;
                 top: -20px;
                 left: ${left}%;
@@ -485,53 +388,53 @@
                 animation: fall ${duration}s linear ${delay}s infinite;
             `;
 
-                                container.appendChild(petal);
-                            }
+        container.appendChild(petal);
+    }
 
-                            // Add Petal Animation Keyframes dynamically
-                            const style = document.createElement('style');
-                            style.textContent = `
+    // Add Petal Animation Keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = `
             @keyframes fall {
                 0% { transform: translateY(0) rotate(0deg) translateX(0); }
                 100% { transform: translateY(110vh) rotate(720deg) translateX(100px); }
             }
         `;
-                            document.head.appendChild(style);
+    document.head.appendChild(style);
 
-                            // Build some petals
-                            for (let i = 0; i < 30; i++) {
-                                createPetal();
-                            }
+    // Build some petals
+    for (let i = 0; i < 30; i++) {
+        createPetal();
+    }
 
-                            // Scroll animation script (Existing)
-                            const observer = new IntersectionObserver((entries) => {
-                                entries.forEach(entry => {
-                                    if (entry.isIntersecting) {
-                                        entry.target.classList.add('visible');
-                                    }
-                                });
-                            }, { threshold: 0.1 });
+    // Scroll animation script (Existing)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
 
-                            document.querySelectorAll('section, .song-item').forEach(el => {
-                                el.classList.add('fade-in');
-                                observer.observe(el);
-                            });
+    document.querySelectorAll('section, .song-item').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
 
-                            // Loading Screen Logic
-                            window.addEventListener('load', () => {
-                                const loader = document.getElementById('loading-screen');
-                                const status = document.querySelector('.loading-status');
+    // Loading Screen Logic
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loading-screen');
+        const status = document.querySelector('.loading-status');
 
-                                // Artificial delay to ensure the "Boot" effect is seen
-                                setTimeout(() => {
-                                    if (status) status.textContent = "SYSTEM READY.";
+        // Artificial delay to ensure the "Boot" effect is seen
+        setTimeout(() => {
+            if (status) status.textContent = "SYSTEM READY.";
 
-                                    setTimeout(() => {
-                                        if (loader) loader.classList.add('loaded');
-                                    }, 500);
-                                }, 1000);
-                            });
-                        </script>
+            setTimeout(() => {
+                if (loader) loader.classList.add('loaded');
+            }, 500);
+        }, 1000);
+    });
+</script>
 </body>
 
 </html>
