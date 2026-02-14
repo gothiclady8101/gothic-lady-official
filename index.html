@@ -439,14 +439,14 @@
         const loader = document.getElementById('loading-screen');
         const status = document.querySelector('.loading-status');
 
-        // Artificial delay to ensure the "Boot" effect is seen
+        // Artificial delay to ensure the "Boot" effect is seen - Shortened
         setTimeout(() => {
             if (status) status.textContent = "SYSTEM READY.";
 
             setTimeout(() => {
                 if (loader) loader.classList.add('loaded');
-            }, 500);
-        }, 1000);
+            }, 300); // 500 -> 300
+        }, 600); // 1000 -> 600
     });
 </script>
 </body>
