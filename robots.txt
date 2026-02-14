@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-# Sitemap: https://gothiclady8101.github.io/gothic-lady-official/sitemap.xml
+
+Sitemap: https://gothiclady8101.github.io/gothic-lady-official/sitemap.xml
