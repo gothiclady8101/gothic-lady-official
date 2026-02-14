@@ -318,6 +318,15 @@ section {
 }
 
 /* Discography Grid */
+.featured-song {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(230, 0, 51, 0.1);
+}
+
 .discography-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
