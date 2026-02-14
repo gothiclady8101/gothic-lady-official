@@ -363,22 +363,21 @@
                 follower.style.transform = 'scale(1)';
                 follower.style.borderColor = 'var(--accent-red)';
             });
-            follower.style.borderColor = 'var(--accent-red)';
         });
-    });
 
-    // Hide custom cursor over iframe to prevent double cursor / confusion
-    const featuredSong = document.querySelector('.featured-song');
-    if (featuredSong) {
-        featuredSong.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '0';
-            follower.style.opacity = '0';
-        });
-        featuredSong.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '1';
-            follower.style.opacity = '1';
-        });
-    }
+        // Hide custom cursor over iframe to prevent double cursor / confusion
+        const featuredSong = document.querySelector('.featured-song');
+        if (featuredSong) {
+            featuredSong.addEventListener('mouseenter', () => {
+                cursor.style.opacity = '0';
+                follower.style.opacity = '0';
+            });
+            featuredSong.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '1';
+                follower.style.opacity = '1';
+            });
+        }
+    }    }
     }
 
     // Falling Petals Logic
