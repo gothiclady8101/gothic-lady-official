@@ -420,14 +420,17 @@
         createPetal();
     }
 
-    // Scroll animation script (Existing)
+    // Scroll animation script (Adjusted for mobile visibility)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.05, // Lowered from 0.1 so it triggers earlier on small screens
+        rootMargin: "0px 0px 50px 0px" // Triggers 50px before entering screen
+    });
 
     document.querySelectorAll('section, .song-item').forEach(el => {
         el.classList.add('fade-in');
